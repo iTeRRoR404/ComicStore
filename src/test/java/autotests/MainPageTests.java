@@ -1,5 +1,9 @@
+package autotests;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -17,6 +21,12 @@ public class MainPageTests {
     @AfterMethod
     public void tearDown() {
         driver.quit();
+    }
+    @Test
+    public void currentURL() {
+        String expectedURL = "https://www.28oi.ru/";
+        String actualURL = driver.getCurrentUrl();
+        Assert.assertEquals(actualURL, expectedURL);
     }
     @Test
     public void homePageTitle() {
@@ -44,5 +54,12 @@ public class MainPageTests {
         String expectedTitle = "Корзина";
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle, expectedTitle);
+    }
+    @Test
+    public void scrollTopArrow() {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,1250)");
+        WebElement arrow = driver.findElement(By.cssSelector(".scroll-top"));
+        assert arrow.isDisplayed();
     }
 }
