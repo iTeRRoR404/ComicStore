@@ -1,4 +1,4 @@
-package autotests;
+package chrome.autotests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,7 @@ public class LoginTests {
     public void tearDown() {
         driver.quit();
     }
-    @Test
+    @Test(description = "Вход в личный кабинет")
     public void login() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.cssSelector("#email")).sendKeys("sbuzin@bk.ru");
@@ -30,7 +30,7 @@ public class LoginTests {
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle, expectedTitle);
     }
-    @Test
+    @Test(description = "Вход в личный кабинет без пароля")
     public void loginEmptyPassword() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.cssSelector("#email")).sendKeys("sbuzin@bk.ru");
@@ -40,7 +40,7 @@ public class LoginTests {
         String expectedAttribute = "true";
         Assert.assertEquals(hasAttribute, expectedAttribute);
     }
-    @Test
+    @Test(description = "Вход в личный кабинет без электронной почты")
     public void loginEmptyEmail() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.cssSelector("#email")).sendKeys("");
@@ -50,7 +50,7 @@ public class LoginTests {
         String expectedAttribute = "true";
         Assert.assertEquals(hasAttribute, expectedAttribute);
     }
-    @Test
+    @Test(description = "Вход в личный кабинет с невалидным паролем")
     public void loginInvalidPassword() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.cssSelector("#email")).sendKeys("sbuzin@bk.ru");
@@ -60,7 +60,7 @@ public class LoginTests {
         String actualText = driver.findElement(By.cssSelector(".co-notice--danger")).getText();
         Assert.assertEquals(actualText, expectedText);
     }
-    @Test
+    @Test(description = "Вход в личный кабинет с невалидной электронной почтой")
     public void loginInvalidEmail() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.cssSelector("#email")).sendKeys("sbuz@bk.ru");

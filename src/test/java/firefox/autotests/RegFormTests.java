@@ -1,8 +1,8 @@
-package autotests;
+package firefox.autotests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +13,7 @@ public class RegFormTests {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.get("https://www.28oi.ru/");
     }
 
@@ -22,7 +22,7 @@ public class RegFormTests {
         driver.quit();
     }
 
-    @Test
+    @Test(description = "Регистрация без имени")
     public void regEmptyName() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.linkText("Зарегистрироваться")).click();
@@ -36,7 +36,7 @@ public class RegFormTests {
         String actualMessage = driver.findElement(By.cssSelector(".co-input--name > .co-input-notice")).getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
-    @Test
+    @Test(description = "Регистрация без телефона")
     public void regEmptyPhone() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.linkText("Зарегистрироваться")).click();
@@ -50,7 +50,7 @@ public class RegFormTests {
         String actualMessage = driver.findElement(By.cssSelector(".co-input-notice:nth-child(4)")).getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
-    @Test
+    @Test(description = "Регистрация без электронной почты")
     public void regEmptyEmail() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.linkText("Зарегистрироваться")).click();
@@ -64,7 +64,7 @@ public class RegFormTests {
         String actualMessage = driver.findElement(By.cssSelector(".co-input--email > .co-input-notice")).getText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
-    /*@Test
+    /*@Test(description = "Регистрация без пароля")
     public void regEmptyPasswordTest() {
         driver.findElement(By.linkText("Личный кабинет")).click();
         driver.findElement(By.linkText("Зарегистрироваться")).click();

@@ -1,8 +1,8 @@
-package autotests;
+package firefox.autotests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,14 +13,14 @@ public class SearchTests {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.get("https://www.28oi.ru/");
     }
     @AfterMethod
     public void tearDown() {
         driver.quit();
     }
-    @Test
+    @Test(description = "Поиск на русском")
     public void searchRU() {
         driver.findElement(By.cssSelector(".search-widget-field")).sendKeys("на шифре");
         driver.findElement(By.cssSelector(".search-widget-button")).click();
@@ -28,7 +28,7 @@ public class SearchTests {
         String expectedText = "На шифре. Инсайдерская история криптовалютного бума";
         Assert.assertEquals(actualText, expectedText);
     }
-    @Test
+    @Test(description = "Поиск на английском")
     public void searchEN() {
         driver.findElement(By.cssSelector(".search-widget-field")).sendKeys("mortal kombat");
         driver.findElement(By.cssSelector(".search-widget-button")).click();
