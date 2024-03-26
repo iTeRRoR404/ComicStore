@@ -62,4 +62,11 @@ public class MainPageTests {
         WebElement arrow = driver.findElement(By.cssSelector(".scroll-top"));
         assert arrow.isDisplayed();
     }
+    @Test(description = "Смена языка страницы")
+    public void langEN() {
+        driver.findElement(By.cssSelector("#languages-top > a:nth-child(1) > img")).click();
+        String expectedURL = "https://www.28oi.ru/?lang=en";
+        String actualURL = driver.getCurrentUrl();
+        Assert.assertEquals(actualURL, expectedURL);
+    }
 }
