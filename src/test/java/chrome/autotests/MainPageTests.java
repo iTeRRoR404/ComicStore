@@ -1,5 +1,6 @@
 package chrome.autotests;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +15,13 @@ public class MainPageTests {
     private WebDriver driver;
 
     @BeforeMethod
+    @Step("Создаю веб-драйвер")
     public void setUp() {
         driver = new ChromeDriver();
         driver.get("https://www.28oi.ru/");
     }
     @AfterMethod
+    @Step("Закрываю веб-драйвер")
     public void tearDown() {
         driver.quit();
     }
